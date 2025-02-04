@@ -10,7 +10,7 @@ split_unique <- function(x) {
 }
 
 get_cheese_img <- function(url) {
-  image_url <- page %>%
+  image_url <- read_html(url) %>%
     html_element(".cheese-image-border")
 
   if (!is.null(html_element(image_url, "img"))) {
@@ -22,7 +22,7 @@ get_cheese_img <- function(url) {
       html_attr("src")
   }
 
-  full_image_url <- paste0(url, image_url)
+  full_image_url <- paste0("https://www.cheese.com", image_url)
 
   return(full_image_url)
 }
